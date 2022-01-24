@@ -5,15 +5,18 @@ const ToDoApp = () => {
   const [inputList, setInputList] = useState("");
   const [Items, setItems] = useState([]);
 
+
   const itemEvent = (event) => {
     setInputList(event.target.value);
   };
 
   const listOfItems = () => {
-    setItems((oldItems) => {
-      return [...oldItems, inputList];
-    });
-    setInputList("");
+    if(inputList){
+      setItems((oldItems) => {
+        return [...oldItems, inputList];
+      });
+      setInputList("");
+    }
   };
 
   const deleteItems = (id) => {
@@ -30,6 +33,7 @@ const ToDoApp = () => {
      }
   }
 
+  
   return (
     <>
       <div className="main_div">
@@ -44,7 +48,7 @@ const ToDoApp = () => {
             value={inputList}
             onChange={itemEvent}
           />
-          <button onClick={listOfItems}> + </button>
+          <button  onClick={listOfItems}> + </button>
           <ol>
             {Items.map((itemval, index) => {
               return (
